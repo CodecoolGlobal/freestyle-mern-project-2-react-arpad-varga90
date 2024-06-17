@@ -1,10 +1,11 @@
-//import "./Home.css";
+import MainContainer from "../components/MainContainer";
+import MenuBar from "../components/MenuBar";
 
 export default function Home() {
   return (
-    <>
-      <h1>Hello Kéktúra Rajongó</h1>
-    </>
+    <div className="flex h-screen">
+      <MenuBar />
+      <MainContainer />
+    </div>
   );
 }
-
