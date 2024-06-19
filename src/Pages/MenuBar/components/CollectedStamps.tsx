@@ -12,7 +12,6 @@ export default function CollectedStamps() {
         {stamps.map((stamp) => (
             <div key={stamp.id}>
               <h1>{stamp.hp_id}</h1>
-              <p>{stamp.id}</p>
             </div>
           )
         )}

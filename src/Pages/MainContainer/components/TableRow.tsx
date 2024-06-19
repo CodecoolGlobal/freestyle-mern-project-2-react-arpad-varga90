@@ -3,17 +3,9 @@ import auth from "../../../firebase/auth";
 import { addDoneStamp } from "../../../service/stamps";
 import { useState } from "react";
 
-export default function TableRow({hp_id}:{hp_id:string}) {
+export default function TableRow({ hp_id }: { hp_id: string }) {
   const [user] = useAuthState(auth);
   const [isChecked, setIsChecked] = useState(false);
-  const [stamps, stampsLoading] = useStamp(user!.uid);
-
-  stamps.forEach(stamp => {
-    if (stamp.hp_id === hp_id){
-      setIsChecked(true)
-    }
-    
-  });
 
   function handleAddComment(hp_id: string) {
     if (user && !isChecked) {
@@ -22,7 +14,9 @@ export default function TableRow({hp_id}:{hp_id:string}) {
         uid: user.uid!,
       };
       addDoneStamp(stamp);
+      setIsChecked(true)
     } else if (user && isChecked) {
+      setIsChecked(false)
       //deleteStamp(id);
     } else return;
   }
@@ -41,7 +35,7 @@ export default function TableRow({hp_id}:{hp_id:string}) {
         ) : (
           <></>
         )}
-        OKT-01-1
+        {hp_id}
       </th>
       <td>Írott-kő</td>
       <td>Hét-forrás</td>
