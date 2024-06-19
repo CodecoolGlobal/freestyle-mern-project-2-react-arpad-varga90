@@ -35,6 +35,9 @@ export default function MainContainer() {
         </table>
       </div>
       {/* Buttons */}
+      <div>
+        <button className="btn bg-green-600 my-2">Útvonaltervezés</button>
+      </div>
     </div>
   );
 }
