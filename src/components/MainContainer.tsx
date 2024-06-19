@@ -18,7 +18,7 @@ export default function MainContainer() {
           <thead>
             <tr>
               <th></th>
-              <th>Bélyegzőhely ID</th>
+              <th>Szakasznév</th>
               <th>Táv(km)</th>
               <th>Menetidő(óó:pp)</th>
               <th>Szint +/- (m)</th>
