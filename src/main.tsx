@@ -6,34 +6,12 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { UserProvider } from "./UserProvider";
 
 import "./index.css";
-import AuthOnly from "./components/AuthOnly.tsx";
-import GuestOnly from "./components/GuestOnly.tsx";
-import LoginPage from "./Pages/LoginPage.tsx";
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: (
-      <>
+    element:
         <Home />
-        <AuthOnly>
-          <>
-            <h1>Hello</h1>
-          </>
-        </AuthOnly>
-        <GuestOnly>
-          <LoginPage />
-        </GuestOnly>
-      </>
-    ),
-  },
-  {
-    path: "login",
-    element: (
-      <GuestOnly>
-        <LoginPage />
-      </GuestOnly>
-    ),
   },
 ]);
 
