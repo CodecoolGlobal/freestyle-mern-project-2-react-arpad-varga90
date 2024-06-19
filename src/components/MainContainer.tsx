@@ -1,4 +1,9 @@
+import { useHikeRoute } from "../data/utils";
+import HikeRouteDetails from "./HikeRouteDetails";
+
 export default function MainContainer() {
+  const { data } = useHikeRoute();
+
   return (
       <img
         className="h-[30%] mb-4 object-scale-down"
@@ -22,6 +27,11 @@ export default function MainContainer() {
               </th>
             </tr>
           </thead>
+          <tbody>
+            {data?.features.map((detail, index) => (
+              <HikeRouteDetails key={index} detail={detail} />
+            ))}
+          </tbody>
         </table>
       </div>
       {/* Buttons */}
