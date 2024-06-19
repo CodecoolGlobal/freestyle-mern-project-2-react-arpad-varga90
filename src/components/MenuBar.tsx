@@ -13,7 +13,7 @@ export default function MenuBar() {
   }
 
   return (
-    <div className="bg-gray-800 text-white w-1/4 h-full flex flex-col items-center py-4 fixed top-0 left-0">
+    <div className="bg-gray-800 text-white w-[20%] h-full flex flex-col items-center py-4 fixed top-0 left-0">
       <button
         disabled={loading}
         className="btn btn-primary mb-4"
