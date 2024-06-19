@@ -1,5 +1,5 @@
-import MainContainer from "../components/MainContainer";
-import MenuBar from "../components/MenuBar";
+import MainContainer from "./MainContainer/MainContainer";
+import MenuBar from "./MenuBar/MenuBar";
 
 export default function Home() {
   return (
