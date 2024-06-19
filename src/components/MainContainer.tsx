@@ -1,8 +1,10 @@
 export default function MainContainer() {
   return (
-    <div className="bg-white w-3/4 h-full p-4">
-      <h1 className="text-2xl font-bold">Main Content</h1>
-      {/* Add more content here */}
+      <img
+        className="h-[30%] mb-4 object-scale-down"
+        src="./src/assets/kekkor.jpg"
+        alt="image-about-kekor"
+      />
     </div>
   );
 }
