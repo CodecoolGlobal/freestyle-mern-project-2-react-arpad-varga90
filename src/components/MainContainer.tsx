@@ -5,6 +5,8 @@ export default function MainContainer() {
   const { data } = useHikeRoute();
 
   return (
+    <div className="flex flex-col items-center bg-green-100 ml-[25%] w-[75%] h-full p-4 overflow-hidden">
+      {/* Image div */}
       <img
         className="h-[30%] mb-4 object-scale-down"
         src="./src/assets/kekkor.jpg"
