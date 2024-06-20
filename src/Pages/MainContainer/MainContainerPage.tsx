@@ -24,7 +24,7 @@ export default function MainContainer() {
               <th>Szint +/- (m)</th>
               <th>
                 <label>
-                  <input type="checkbox" className="checkbox" />
+                  <input id="select-all" type="checkbox" className="checkbox" />
                 </label>
               </th>
             </tr>

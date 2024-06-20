@@ -27,7 +27,11 @@ export default function HikeRouteDetails({ detail }: { detail: HikeRoute }) {
       <td>{`${detail.attributes.szintemelkedes}/${detail.attributes.szintcsokkenes}`}</td>
       <td>
         <label>
-          <input type="checkbox" className="checkbox" />
+          <input
+            id={`${detail.attributes.sorszam}`}
+            type="checkbox"
+            className="checkbox"
+          />
         </label>
       </td>
     </tr>
