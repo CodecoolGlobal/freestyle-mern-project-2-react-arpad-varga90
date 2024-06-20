@@ -1,6 +1,9 @@
-import { HikeRoute } from "../types/hike-routes";
+import { useHikeRouteDetails } from "../../../data/utils";
+import { HikeRoute } from "../../../types/hike-routes";
 
 export default function HikeRouteDetails({ detail }: { detail: HikeRoute }) {
+  const { data } = useHikeRouteDetails(detail.attributes.kezdopont_bh_id);
+  console.log(data?.features);
   return (
     <tr className="hover">
       <td>{detail.attributes.sorszam}</td>
