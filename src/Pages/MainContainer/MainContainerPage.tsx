@@ -38,7 +38,21 @@ export default function MainContainer() {
       </div>
       {/* Buttons */}
       <div>
-        <button className="btn bg-green-600 my-2">Útvonaltervezés</button>
+        {!isClicked ? (
+          <button
+            className="btn bg-green-600 my-2"
+            onClick={() => setIsClicked(true)}
+          >
+            Útvonaltervezés
+          </button>
+        ) : (
+          <button
+            className="btn bg-green-600 my-2"
+            onClick={() => setIsClicked(false)}
+          >
+            Válassz 2 helyet
+          </button>
+        )}
       </div>
     </div>
   );
