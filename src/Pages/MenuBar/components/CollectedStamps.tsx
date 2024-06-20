@@ -4,7 +4,7 @@ import useStamp from "../../../hooks/useStamp";
 
 export default function CollectedStamps() {
   const [user] = useAuthState(auth);
-  const [stamps, stampsLoading] = useStamp(user!.uid);
+  const [stamps] = useStamp(user!.uid);
 
   if (stamps) {
     return (
