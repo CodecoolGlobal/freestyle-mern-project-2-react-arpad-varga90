@@ -7,7 +7,7 @@ import auth from "../../firebase/auth";
 export default function MainContainerPage() {
   const { data } = useHikeRoute();
   const [user] = useAuthState(auth);
-  const [stamps] = useStamp(user? user!.uid:"");
+  const [stamps] = useStamp(user ? user!.uid : "");
 
   const dataChecks = data?.features.map((detail) => {
     let isChecked = false;
@@ -18,7 +18,7 @@ export default function MainContainerPage() {
         }
       });
     }
-    return isChecked
+    return isChecked;
   });
 
   return (
@@ -35,20 +35,27 @@ export default function MainContainerPage() {
           <thead>
             <tr>
               <th></th>
-              <th>Szakasznév</th>
-              <th>Táv(km)</th>
-              <th>Menetidő(óó:pp)</th>
-              <th>Szint +/- (m)</th>
               <th>
                 <label>
                   <input type="checkbox" className="checkbox" />
                 </label>
               </th>
+              <th>Szakasznév</th>
+              <th>Táv(km)</th>
+              <th>Menetidő(óó:pp)</th>
+              <th>Szint +/- (m)</th>
+              <th>Like</th>
             </tr>
           </thead>
           <tbody>
             {data?.features.map((detail, index) => (
-              <HikeRouteDetails key={index} detail={detail} isChecked={dataChecks![index]} />
+              <HikeRouteDetails
+                key={index}
+                detail={detail}
+                isChecked={dataChecks![index]}
+                liked={false}
+                likeNum={123}
+              />
             ))}
           </tbody>
         </table>
