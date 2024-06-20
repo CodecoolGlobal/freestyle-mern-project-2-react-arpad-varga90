@@ -1,4 +1,4 @@
-import { DocumentSnapshot, SnapshotOptions, addDoc, collection, deleteDoc, doc, query, where } from "firebase/firestore";
+import { DocumentSnapshot, SnapshotOptions, addDoc, collection, deleteDoc, doc, query, setDoc, where } from "firebase/firestore";
 import store from "../firebase/store";
 import { NewStamp, Stamp } from "../types/Stamp";
 
@@ -22,7 +22,7 @@ export function stampQuery (uid:string){
 }
 
 export async function addDoneStamp(stamp: NewStamp) {
-  return await addDoc(stampCollection, stamp);
+  return await setDoc(doc(store,"stamps",stamp.hp_id), stamp);
 }
 
 export function getstampDoc(id: string) {
