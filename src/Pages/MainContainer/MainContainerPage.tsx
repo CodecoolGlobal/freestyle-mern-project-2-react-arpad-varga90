@@ -1,5 +1,5 @@
-import { useHikeRoute } from "../data/utils";
-import HikeRouteDetails from "./HikeRouteDetails";
+import { useHikeRoute } from "../../data/utils";
+import HikeRouteDetails from "./components/HikeRouteDetails";
 
 export default function MainContainer() {
   const { data } = useHikeRoute();

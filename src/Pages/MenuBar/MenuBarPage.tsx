@@ -1,5 +1,5 @@
-import auth from "../firebase/auth";
 import { useSignInWithGoogle } from "react-firebase-hooks/auth";
+import auth from "../../firebase/auth";
 
 export default function MenuBar() {
   const [signIn, user, loading] = useSignInWithGoogle(auth);
