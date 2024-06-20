@@ -11,7 +11,7 @@ export default function CollectedStamps() {
       <>
         {stamps.map((stamp) => (
             <div key={stamp.id}>
-              <h1>{stamp.hp_id}</h1>
+              <h1>{stamp.bhszakasz_id}</h1>
             </div>
           )
         )}

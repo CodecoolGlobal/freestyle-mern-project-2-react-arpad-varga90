@@ -10,7 +10,7 @@ import {
   where,
 } from "firebase/firestore";
 import store from "../firebase/store";
-import { NewStamp, Stamp } from "../types/Stamp";
+import { Stamp } from "../types/Stamp";
 
 const converter = {
   toFirestore(stamp: Stamp) {

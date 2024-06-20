@@ -1,6 +1,6 @@
 export interface Stamp {
     uid: string;
-    hp_id:string;
+    bhszakasz_id:string;
     id:string
 }
 

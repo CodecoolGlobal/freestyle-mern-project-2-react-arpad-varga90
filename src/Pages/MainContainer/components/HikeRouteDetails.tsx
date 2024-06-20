@@ -2,24 +2,27 @@ import { useAuthState } from "react-firebase-hooks/auth";
 import { deleteStamp, setDoneStamp } from "../../../service/stamps";
 import { HikeRoute } from "../../../types/hike-routes";
 import auth from "../../../firebase/auth";
-import { useState } from "react";
 
-export default function HikeRouteDetails({ detail }: { detail: HikeRoute }) {
+
+export default function HikeRouteDetails({
+  detail,
+  isChecked
+}: {
+  detail: HikeRoute;
+  isChecked:boolean;
+}) {
   const [user] = useAuthState(auth);
-  const [isChecked, setIsChecked] = useState(false);
 
-  function handleAddComment(hp_id: string) {
+  function handleCheck() {
     if (user && !isChecked) {
       const stamp = {
-        id:user.uid+hp_id,
-        hp_id: detail.attributes.kezdopont_bh_id,
+        id: user.uid + detail.attributes.bhszakasz_id,
+        bhszakasz_id: detail.attributes.bhszakasz_id,
         uid: user.uid,
       };
       setDoneStamp(stamp);
-      setIsChecked(true);
     } else if (user && isChecked) {
-      setIsChecked(false);
-      deleteStamp(user.uid+hp_id);
+      deleteStamp(user.uid + detail.attributes.bhszakasz_id);
     } else return;
   }
 
@@ -49,10 +52,10 @@ export default function HikeRouteDetails({ detail }: { detail: HikeRoute }) {
           {user ? (
             <input
               type="checkbox"
-              className="checkbox" 
+              className="checkbox"
               checked={isChecked}
               onChange={() => {
-                handleAddComment(detail.attributes.kezdopont_bh_id);
+                handleCheck();
               }}
             />
           ) : (
