@@ -1,6 +1,5 @@
 import { useAuthState } from "react-firebase-hooks/auth";
 import auth from "../firebase/auth";
-import { Navigate } from "react-router-dom";
 
 export default function GuestOnly({ children }: { children: React.ReactNode }) {
   const [user, loading] = useAuthState(auth);
@@ -10,8 +9,6 @@ export default function GuestOnly({ children }: { children: React.ReactNode }) {
   }
 
   if (!user) {
-    return <>{children}</>
+    return <>{children}</>;
   }
-
-  return <Navigate to="/movies" />
 }

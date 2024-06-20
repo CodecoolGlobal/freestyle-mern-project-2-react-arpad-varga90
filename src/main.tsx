@@ -10,25 +10,9 @@ import "./index.css";
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <Home />,
+    element:
+        <Home />
   },
-/*  {
-    path: "login",
-    element: (
-      <GuestOnly>
-        <LoginPage />
-      </GuestOnly>
-    ),
-  },
-  {
-    path: "movies",
-    element: (
-      <AuthOnly>
-        <MoviesPage />
-      </AuthOnly>
-    ),
-  },
-*/
 ]);
 
 const queryClient = new QueryClient();
