@@ -1,4 +1,14 @@
-import { DocumentSnapshot, SnapshotOptions, addDoc, collection, deleteDoc, doc, query, setDoc, where } from "firebase/firestore";
+import {
+  DocumentSnapshot,
+  SnapshotOptions,
+  addDoc,
+  collection,
+  deleteDoc,
+  doc,
+  query,
+  setDoc,
+  where,
+} from "firebase/firestore";
 import store from "../firebase/store";
 import { NewStamp, Stamp } from "../types/Stamp";
 
@@ -15,14 +25,20 @@ const converter = {
   },
 };
 
-export const stampCollection = collection(store, "stamps").withConverter<Stamp>(converter);
+export const stampCollection = collection(store, "stamps").withConverter<Stamp>(
+  converter
+);
 
-export function stampQuery (uid:string){
-    return query(stampCollection, where('uid','==',uid))
+export function stampQuery(uid: string) {
+  return query(stampCollection, where("uid", "==", uid));
 }
 
-export async function addDoneStamp(stamp: NewStamp) {
-  return await setDoc(doc(store,"stamps",stamp.hp_id), stamp);
+export async function setDoneStamp(stamp: Stamp) {
+  return await setDoc(doc(store, "stamps", stamp.id), stamp);
+}
+
+export async function deleteStamp(id: string) {
+  return await deleteDoc(doc(store, "stamps", id));
 }
 
 export function getstampDoc(id: string) {

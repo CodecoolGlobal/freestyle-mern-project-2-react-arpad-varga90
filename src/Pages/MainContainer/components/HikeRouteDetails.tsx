@@ -1,9 +1,28 @@
-import { useHikeRouteDetails } from "../../../data/utils";
+import { useAuthState } from "react-firebase-hooks/auth";
+import { deleteStamp, setDoneStamp } from "../../../service/stamps";
 import { HikeRoute } from "../../../types/hike-routes";
+import auth from "../../../firebase/auth";
+import { useState } from "react";
 
 export default function HikeRouteDetails({ detail }: { detail: HikeRoute }) {
-  const { data } = useHikeRouteDetails(detail.attributes.kezdopont_bh_id);
-  console.log(data?.features);
+  const [user] = useAuthState(auth);
+  const [isChecked, setIsChecked] = useState(false);
+
+  function handleAddComment(hp_id: string) {
+    if (user && !isChecked) {
+      const stamp = {
+        id:user.uid+hp_id,
+        hp_id: detail.attributes.kezdopont_bh_id,
+        uid: user.uid,
+      };
+      setDoneStamp(stamp);
+      setIsChecked(true);
+    } else if (user && isChecked) {
+      setIsChecked(false);
+      deleteStamp(user.uid+hp_id);
+    } else return;
+  }
+
   return (
     <tr className="hover">
       <td>{detail.attributes.sorszam}</td>
@@ -27,7 +46,18 @@ export default function HikeRouteDetails({ detail }: { detail: HikeRoute }) {
       <td>{`${detail.attributes.szintemelkedes}/${detail.attributes.szintcsokkenes}`}</td>
       <td>
         <label>
-          <input type="checkbox" className="checkbox" />
+          {user ? (
+            <input
+              type="checkbox"
+              className="checkbox" 
+              checked={isChecked}
+              onChange={() => {
+                handleAddComment(detail.attributes.kezdopont_bh_id);
+              }}
+            />
+          ) : (
+            <></>
+          )}
         </label>
       </td>
     </tr>

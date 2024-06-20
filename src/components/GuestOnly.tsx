@@ -9,7 +9,6 @@ export default function GuestOnly({ children }: { children: React.ReactNode }) {
   }
 
   if (!user) {
-    return <>{children}</>
+    return <>{children}</>;
   }
-
 }

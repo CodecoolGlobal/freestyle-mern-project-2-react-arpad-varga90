@@ -9,6 +9,6 @@ export default function AuthOnly({ children }: { children: React.ReactNode }) {
   }
 
   if (user) {
-    return <>{children}</>
+    return <>{children}</>;
   }
 }

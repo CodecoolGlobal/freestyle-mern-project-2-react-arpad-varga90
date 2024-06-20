@@ -1,10 +1,8 @@
 import { useHikeRoute } from "../../data/utils";
 import HikeRouteDetails from "./components/HikeRouteDetails";
-import TableRow from "./components/TableRow";
 
 export default function MainContainerPage() {
   const { data } = useHikeRoute();
-  const hp_ids = ["OKT-01-1", "OKT-01-2", "OKT-01-3", "OKT-01-4"];
 
   return (
     <div className="flex flex-col items-center bg-green-100 ml-[20%] w-[80%] h-full p-4 overflow-hidden">
@@ -32,7 +30,6 @@ export default function MainContainerPage() {
             </tr>
           </thead>
           <tbody>
-          {hp_ids.map((hp_id)=><TableRow hp_id={hp_id}/>)}
             {data?.features.map((detail, index) => (
               <HikeRouteDetails key={index} detail={detail} />
             ))}
