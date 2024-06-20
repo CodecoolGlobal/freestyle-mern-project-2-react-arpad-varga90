@@ -25,10 +25,10 @@ async function fetchHikeRouteDetails(id: number): Promise<HikeRoutes> {
   return data;
 }
 
-export function useHikeRouteDetails(bh_id: number) {
+export function useHikeRouteDetails(sorszam: number) {
   return useQuery({
-    queryKey: ["hikeRoute", bh_id],
-    queryFn: () => fetchHikeRouteDetails(bh_id),
+    queryKey: ["hikeRoute", sorszam],
+    queryFn: () => fetchHikeRouteDetails(sorszam),
     refetchOnWindowFocus: false,
   });
 }
