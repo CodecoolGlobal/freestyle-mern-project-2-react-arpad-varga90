@@ -2,7 +2,7 @@ import { useHikeRoute } from "../../data/utils";
 import HikeRouteDetails from "./components/HikeRouteDetails";
 import TableRow from "./components/TableRow";
 
-export default function MainContainer() {
+export default function MainContainerPage() {
   const { data } = useHikeRoute();
   const hp_ids = ["OKT-01-1", "OKT-01-2", "OKT-01-3", "OKT-01-4"];
 

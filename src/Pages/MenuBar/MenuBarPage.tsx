@@ -5,7 +5,7 @@ import auth from "../../firebase/auth";
 import GuestOnly from "../../components/GuestOnly";
 import AuthOnly from "../../components/AuthOnly";
 
-export default function MenuBar() {
+export default function MenuBarPage() {
   const [SignInWithGoogle, userGoogle, signInGoogleLoading] =
     useSignInWithGoogle(auth);
   const [signOut, signOutLoading] = useSignOut(auth);
