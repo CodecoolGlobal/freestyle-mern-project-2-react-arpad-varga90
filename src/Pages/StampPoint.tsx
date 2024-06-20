@@ -1,7 +1,6 @@
-import { useEffect, useState } from "react";
-import { StampPointData } from "../Types/types";
 import { useParams } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
+import { StampPointData } from "../types/types";
 
 const fetchPoints = async (id: string) => {
   const BASE_URL = `https://turistaterkepek.hu/server/rest/services/orszagos_kektura/kekturahu/MapServer/0/query?text=${id}&outFields=*&returnGeometry=false&f=pjson`;

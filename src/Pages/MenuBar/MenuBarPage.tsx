@@ -10,6 +10,7 @@ export default function MenuBarPage() {
     useSignInWithGoogle(auth);
   const [signOut, signOutLoading] = useSignOut(auth);
   const [user] = useAuthState(auth);
+  console.log(userGoogle);
 
   function handleGoogleAuth() {
     SignInWithGoogle();
@@ -32,7 +33,7 @@ export default function MenuBarPage() {
           <h1>
             Szia {user?.displayName?.split(" ")[0] ?? user?.email ?? "anonymus"}
           </h1>
-          <CollectedStamps/>
+          <CollectedStamps />
           <button
             disabled={signOutLoading}
             className="btn btn-error mb-4"
