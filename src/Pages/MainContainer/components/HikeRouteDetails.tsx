@@ -1,3 +1,4 @@
+//import { useHikeRouteDetails } from "../../../data/utils";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { deleteStamp, setDoneStamp } from "../../../service/stamps";
 import { HikeRoute } from "../../../types/hike-routes";
@@ -7,9 +8,11 @@ import { deleteLike, setLike } from "../../../service/likes";
 
 export default function HikeRouteDetails({
   detail,
+  onRowClick,
   dataOnFire,
 }: {
   detail: HikeRoute;
+  onRowClick: (detail: HikeRoute) => void;
   dataOnFire: {
     isChecked: boolean;
     isLiked: boolean;
@@ -17,6 +20,20 @@ export default function HikeRouteDetails({
   };
 }) {
   const [user] = useAuthState(auth);
+
+  /*
+  const { data, isFetched, error } = useHikeRouteDetails(
+    detail.attributes.sorszam
+  );
+
+  if (isFetched && !error) {
+    data?.features.forEach((item) => console.log(item.attributes));
+  }
+  */
+
+  function handleRowClick() {
+    onRowClick(detail);
+  }
 
   function handleCheck() {
     if (user && !dataOnFire.isChecked) {
@@ -45,7 +62,7 @@ export default function HikeRouteDetails({
   }
 
   return (
-    <tr className="hover">
+    <tr className="hover" onClick={handleRowClick}>
       <td>{detail.attributes.sorszam}</td>
       <td>
         <label>

@@ -1,12 +1,21 @@
+import { useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { useHikeRoute } from "../../data/utils";
 import useStamp from "../../hooks/useStamp";
 import HikeRouteDetails from "./components/HikeRouteDetails";
+import { HikeRoute } from "../../types/hike-routes";
 import auth from "../../firebase/auth";
 import useLike from "../../hooks/useLike";
 import useLikeNum from "../../hooks/useLikeNum";
 
 export default function MainContainerPage() {
+  const [isRoutPlanning, setisRoutPlanning] = useState(false);
+  const [selectedDetail, setSelectedDetail] = useState({});
+
+  function handleRowClick(detail: HikeRoute) {
+    setSelectedDetail(detail);
+    console.log(selectedDetail);
+  }
   const { data } = useHikeRoute();
   const [user] = useAuthState(auth);
   const [stamps] = useStamp(user ? user!.uid : "");
@@ -57,7 +66,7 @@ export default function MainContainerPage() {
               <th></th>
               <th>
                 <label>
-                  <input type="checkbox" className="checkbox" />
+                  <input id="select-all" type="checkbox" className="checkbox" />
                 </label>
               </th>
               <th>Szakasznév</th>
@@ -73,6 +82,7 @@ export default function MainContainerPage() {
                 key={index}
                 detail={detail}
                 dataOnFire={dataOnFire![index]}
+                onRowClick={handleRowClick}
               />
             ))}
           </tbody>
@@ -80,7 +90,21 @@ export default function MainContainerPage() {
       </div>
       {/* Buttons */}
       <div>
-        <button className="btn bg-green-600 my-2">Útvonaltervezés</button>
+        {!isRoutPlanning ? (
+          <button
+            className="btn bg-green-600 my-2"
+            onClick={() => setisRoutPlanning(true)}
+          >
+            Útvonaltervezés
+          </button>
+        ) : (
+          <button
+            className="btn bg-green-600 my-2"
+            onClick={() => setisRoutPlanning(false)}
+          >
+            Válassz 2 helyet
+          </button>
+        )}
       </div>
     </div>
   );
