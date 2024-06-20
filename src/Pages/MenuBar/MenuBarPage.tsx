@@ -10,7 +10,9 @@ export default function MenuBarPage() {
     useSignInWithGoogle(auth);
   const [signOut, signOutLoading] = useSignOut(auth);
   const [user] = useAuthState(auth);
-  console.log(userGoogle);
+  if (userGoogle) {
+    //
+  }
 
   function handleGoogleAuth() {
     SignInWithGoogle();
