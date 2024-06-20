@@ -1,11 +1,11 @@
-import MainContainer from "./MainContainer/MainContainerPage";
-import MenuBar from "./MenuBar/MenuBarPage";
+import MainContainerPage from "./MainContainer/MainContainerPage";
+import MenuBarPage from "./MenuBar/MenuBarPage";
 
 export default function Home() {
   return (
     <div className="flex h-screen">
-      <MenuBar />
-      <MainContainer />
+      <MenuBarPage />
+      <MainContainerPage />
     </div>
   );
 }
