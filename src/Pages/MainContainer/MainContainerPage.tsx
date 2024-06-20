@@ -3,14 +3,20 @@ import { useHikeRoute } from "../../data/utils";
 import useStamp from "../../hooks/useStamp";
 import HikeRouteDetails from "./components/HikeRouteDetails";
 import auth from "../../firebase/auth";
+import useLike from "../../hooks/useLike";
+import useLikeNum from "../../hooks/useLikeNum";
 
 export default function MainContainerPage() {
   const { data } = useHikeRoute();
   const [user] = useAuthState(auth);
   const [stamps] = useStamp(user ? user!.uid : "");
+  const [likes] = useLike(user ? user!.uid : "");
+  const [likesNum] = useLikeNum();
 
-  const dataChecks = data?.features.map((detail) => {
+  const dataOnFire = data?.features.map((detail) => {
     let isChecked = false;
+    let isLiked = false;
+    let likeNum = 0;
     if (stamps) {
       stamps.forEach((stamp) => {
         if (stamp.bhszakasz_id === detail.attributes.bhszakasz_id) {
@@ -18,7 +24,21 @@ export default function MainContainerPage() {
         }
       });
     }
-    return isChecked;
+    if (likes) {
+      likes.forEach((like) => {
+        if (like.bhszakasz_id === detail.attributes.bhszakasz_id) {
+          isLiked = true;
+        }
+      });
+    }
+    if (likesNum) {
+      likesNum.forEach((like) => {
+        if (like.bhszakasz_id === detail.attributes.bhszakasz_id) {
+          likeNum += 1;
+        }
+      });
+    }
+    return { isChecked: isChecked, isLiked: isLiked, likeNum: likeNum };
   });
 
   return (
@@ -52,9 +72,7 @@ export default function MainContainerPage() {
               <HikeRouteDetails
                 key={index}
                 detail={detail}
-                isChecked={dataChecks![index]}
-                liked={false}
-                likeNum={123}
+                dataOnFire={dataOnFire![index]}
               />
             ))}
           </tbody>
