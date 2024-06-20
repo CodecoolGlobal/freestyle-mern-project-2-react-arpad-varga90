@@ -8,9 +8,9 @@ export default function StampPoint() {
   const [points, setPoints] = useState<StampPointData[]>([]);
   useEffect(() => {
     const fetchPoints = async () => {
-      const response = await fetch(`${BASE_URL}/points`);
+      const response = await fetch(BASE_URL);
       const data = await response.json();
-      setPoints(data);
+      return data;
     };
     fetchPoints();
   }, []);
@@ -27,3 +27,8 @@ export default function StampPoint() {
     </div>
   );
 }
+
+/*
+"https://turistaterkepek.hu/server/rest/services/orszagos_kektura/kekturahu/MapServer/0/query?text=OKTPH&outFields=objectid%2C+sorszam%2C+url_lenyomat%2C+bh_id%2C+bh_nev%2C+helyszin%2C+helyszin_leiras%2C+url_kep_1%2C+url_kep_2%2C+url_kep_3%2C+url_kep_4%2C+url_kep_5%2C+lat%2C+lon&returnGeometry=false&returnTrueCurves=false&returnIdsOnly=false&returnCountOnly=false&orderByFields=sorszam&groupByFieldsForStatistics=&returnZ=false&returnM=false&returnDistinctValues=false&returnExtentOnly=false&sqlFormat=none&featureEncoding=esriDefault&f=pjson";
+https://turistaterkepek.hu/server/rest/services/orszagos_kektura/kekturahu/MapServer/0/query?where=sorszam=${id}&outFields='&returnGeometry=false&f=pjson
+*/

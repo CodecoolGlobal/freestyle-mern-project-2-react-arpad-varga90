@@ -1,4 +1,5 @@
 export type StampPointData = {
+  attributes: any;
   features: [
     attributes: {
       objectid: number;
