@@ -1,12 +1,14 @@
-import { Navigate } from "react-router-dom";
-import { useAuth } from "../UserProvider";
+import { useAuthState } from "react-firebase-hooks/auth";
+import auth from "../firebase/auth";
 
 export default function AuthOnly({ children }: { children: React.ReactNode }) {
-  const user = useAuth();
+  const [user, loading] = useAuthState(auth);
 
-  if (user) {
-    return <>{children}</>
+  if (loading) {
+    return null;
   }
 
-  return <Navigate to="/login" />
+  if (user) {
+    return <>{children}</>;
+  }
 }
