@@ -2,6 +2,7 @@ import { useAuthState } from "react-firebase-hooks/auth";
 import { deleteStamp, setDoneStamp } from "../../../service/stamps";
 import { HikeRoute } from "../../../types/hike-routes";
 import auth from "../../../firebase/auth";
+import { Link } from "react-router-dom";
 
 export default function HikeRouteDetails({
   detail,
@@ -59,7 +60,13 @@ export default function HikeRouteDetails({
             </div>
           </div>
           <div>
-            <div>{detail.attributes.szakasznev}</div>
+            <Link to={`/pecset/${detail.attributes.kezdopont_bh_id}`}>
+              <div>{detail.attributes.kezdopont}</div>
+            </Link>
+            {" - "}
+            <Link to={`/pecset/${detail.attributes.vegpont_bh_id}`}>
+              <div>{detail.attributes.vegpont}</div>
+            </Link>
           </div>
         </div>
       </td>
