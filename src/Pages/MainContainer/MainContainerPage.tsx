@@ -1,7 +1,17 @@
+import { useState } from "react";
 import { useHikeRoute } from "../../data/utils";
 import HikeRouteDetails from "./components/HikeRouteDetails";
+import { HikeRoute } from "../../types/hike-routes";
 
 export default function MainContainer() {
+  const [isClicked, setIsClicked] = useState(false);
+  const [selectedDetail, setSelectedDetail] = useState({});
+
+  function handleRowClick(detail: HikeRoute) {
+    setSelectedDetail(detail);
+    console.log(detail.attributes.sorszam);
+  }
+
   const { data } = useHikeRoute();
 
   return (
@@ -31,7 +41,11 @@ export default function MainContainer() {
           </thead>
           <tbody>
             {data?.features.map((detail, index) => (
-              <HikeRouteDetails key={index} detail={detail} />
+              <HikeRouteDetails
+                key={index}
+                detail={detail}
+                onRowClick={handleRowClick}
+              />
             ))}
           </tbody>
         </table>

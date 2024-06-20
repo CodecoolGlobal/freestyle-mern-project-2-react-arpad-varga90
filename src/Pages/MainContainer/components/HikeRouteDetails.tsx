@@ -1,7 +1,13 @@
 //import { useHikeRouteDetails } from "../../../data/utils";
 import { HikeRoute } from "../../../types/hike-routes";
 
-export default function HikeRouteDetails({ detail }: { detail: HikeRoute }) {
+export default function HikeRouteDetails({
+  detail,
+  onRowClick,
+}: {
+  detail: HikeRoute;
+  onRowClick: (detail: HikeRoute) => void;
+}) {
   /*
   const { data, isFetched, error } = useHikeRouteDetails(
     detail.attributes.sorszam
@@ -12,8 +18,12 @@ export default function HikeRouteDetails({ detail }: { detail: HikeRoute }) {
   }
   */
 
+  function handleRowClick() {
+    onRowClick(detail);
+  }
+
   return (
-    <tr className="hover">
+    <tr className="hover cursor-pointer" onClick={handleRowClick}>
       <td>{detail.attributes.sorszam}</td>
       <td>
         <div className="flex items-center gap-3">
