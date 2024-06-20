@@ -1,4 +1,3 @@
-//import { useHikeRouteDetails } from "../../../data/utils";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { deleteStamp, setDoneStamp } from "../../../service/stamps";
 import { HikeRoute } from "../../../types/hike-routes";
@@ -20,16 +19,6 @@ export default function HikeRouteDetails({
   };
 }) {
   const [user] = useAuthState(auth);
-
-  /*
-  const { data, isFetched, error } = useHikeRouteDetails(
-    detail.attributes.sorszam
-  );
-
-  if (isFetched && !error) {
-    data?.features.forEach((item) => console.log(item.attributes));
-  }
-  */
 
   function handleRowClick() {
     onRowClick(detail);
@@ -81,7 +70,7 @@ export default function HikeRouteDetails({
         </label>
       </td>
       <td>
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-1">
           <div className="avatar">
             <div className="w-16 h-16">
               <img
@@ -92,11 +81,17 @@ export default function HikeRouteDetails({
           </div>
           <div>
             <Link to={`/pecset/${detail.attributes.kezdopont_bh_id}`}>
-              <div>{detail.attributes.kezdopont}</div>
+              <span className="text-white bg-blue-500 hover:bg-blue-700 rounded-full px-2 py-1 shadow-lg transition duration-300">
+                {detail.attributes.kezdopont}
+              </span>
             </Link>
-            {" - "}
+          </div>
+          <div>{" <-> "}</div>
+          <div>
             <Link to={`/pecset/${detail.attributes.vegpont_bh_id}`}>
-              <div>{detail.attributes.vegpont}</div>
+              <span className="text-white bg-blue-500 hover:bg-blue-700 rounded-full px-2 py-1 shadow-lg transition duration-300">
+                {detail.attributes.vegpont}
+              </span>
             </Link>
           </div>
         </div>

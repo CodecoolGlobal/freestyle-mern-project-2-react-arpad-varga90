@@ -4,9 +4,9 @@ import HomePage from "./Pages/HomePage.tsx";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { UserProvider } from "./UserProvider";
+import StampPoint from "./Pages/StampPoint.tsx";
 
 import "./index.css";
-import StampPoint from "./Pages/StampPoint.tsx";
 
 const router = createBrowserRouter([
   {

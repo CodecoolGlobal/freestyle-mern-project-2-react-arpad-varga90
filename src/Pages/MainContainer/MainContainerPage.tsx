@@ -7,6 +7,7 @@ import { HikeRoute } from "../../types/hike-routes";
 import auth from "../../firebase/auth";
 import useLike from "../../hooks/useLike";
 import useLikeNum from "../../hooks/useLikeNum";
+import kekkorImg from "../../assets/kekkor.jpg";
 
 export default function MainContainerPage() {
   const [isRoutPlanning, setisRoutPlanning] = useState(false);
@@ -55,7 +56,7 @@ export default function MainContainerPage() {
       {/* Image div */}
       <img
         className="h-[30%] mb-4 object-scale-down"
-        src="./src/assets/kekkor.jpg"
+        src={kekkorImg}
         alt="image-about-kekor"
       />
       {/* Stamp list */}
@@ -92,14 +93,14 @@ export default function MainContainerPage() {
       <div>
         {!isRoutPlanning ? (
           <button
-            className="btn bg-green-600 my-2"
+            className="btn bg-blue-500 my-2"
             onClick={() => setisRoutPlanning(true)}
           >
             Útvonaltervezés
           </button>
         ) : (
           <button
-            className="btn bg-green-600 my-2"
+            className="btn bg-blue-500 my-2"
             onClick={() => setisRoutPlanning(false)}
           >
             Válassz 2 helyet
