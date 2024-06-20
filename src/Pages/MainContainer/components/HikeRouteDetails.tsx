@@ -47,7 +47,7 @@ export default function HikeRouteDetails({
   }
 
   return (
-    <tr className="hover cursor-pointer" onClick={handleRowClick}>
+    <tr className="hover" onClick={handleRowClick}>
       <td>{detail.attributes.sorszam}</td>
       <td>
         <label>
