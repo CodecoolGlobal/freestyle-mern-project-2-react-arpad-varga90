@@ -3,30 +3,44 @@ import { deleteStamp, setDoneStamp } from "../../../service/stamps";
 import { HikeRoute } from "../../../types/hike-routes";
 import auth from "../../../firebase/auth";
 import { Link } from "react-router-dom";
+import { deleteLike, setLike } from "../../../service/likes";
 
 export default function HikeRouteDetails({
   detail,
-  isChecked,
-  liked,
-  likeNum,
+  dataOnFire,
 }: {
   detail: HikeRoute;
-  isChecked: boolean;
-  liked: boolean;
-  likeNum: number;
+  dataOnFire: {
+    isChecked: boolean;
+    isLiked: boolean;
+    likeNum: number;
+  };
 }) {
   const [user] = useAuthState(auth);
 
   function handleCheck() {
-    if (user && !isChecked) {
+    if (user && !dataOnFire.isChecked) {
       const stamp = {
         id: user.uid + detail.attributes.bhszakasz_id,
         bhszakasz_id: detail.attributes.bhszakasz_id,
         uid: user.uid,
       };
       setDoneStamp(stamp);
-    } else if (user && isChecked) {
+    } else if (user && dataOnFire.isChecked) {
       deleteStamp(user.uid + detail.attributes.bhszakasz_id);
+    } else return;
+  }
+
+  function handleLike() {
+    if (user && !dataOnFire.isLiked) {
+      const like = {
+        id: user.uid + detail.attributes.bhszakasz_id,
+        bhszakasz_id: detail.attributes.bhszakasz_id,
+        uid: user.uid,
+      };
+      setLike(like);
+    } else if (user && dataOnFire.isLiked) {
+      deleteLike(user.uid + detail.attributes.bhszakasz_id);
     } else return;
   }
 
@@ -39,7 +53,7 @@ export default function HikeRouteDetails({
             <input
               type="checkbox"
               className="checkbox"
-              checked={isChecked}
+              checked={dataOnFire.isChecked}
               onChange={() => {
                 handleCheck();
               }}
@@ -76,8 +90,11 @@ export default function HikeRouteDetails({
       <td>
         <button
           type="button"
+          onClick={() => {
+            handleLike();
+          }}
           className={`${
-            liked
+            dataOnFire.isLiked
               ? "text-white  hover:bg-white hover:text-red-700 bg-blue-700"
               : "text-blue-700  hover:bg-blue-700 hover:text-white"
           }
@@ -91,7 +108,7 @@ export default function HikeRouteDetails({
           >
             <path d="M3 7H1a1 1 0 0 0-1 1v8a2 2 0 0 0 4 0V8a1 1 0 0 0-1-1Zm12.954 0H12l1.558-4.5a1.778 1.778 0 0 0-3.331-1.06A24.859 24.859 0 0 1 6 6.8v9.586h.114C8.223 16.969 11.015 18 13.6 18c1.4 0 1.592-.526 1.88-1.317l2.354-7A2 2 0 0 0 15.954 7Z" />
           </svg>
-          {likeNum}
+          {dataOnFire.likeNum}
         </button>
       </td>
     </tr>

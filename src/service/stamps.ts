@@ -1,7 +1,6 @@
 import {
   DocumentSnapshot,
   SnapshotOptions,
-  addDoc,
   collection,
   deleteDoc,
   doc,
