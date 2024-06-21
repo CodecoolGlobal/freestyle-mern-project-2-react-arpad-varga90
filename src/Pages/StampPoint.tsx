@@ -1,8 +1,8 @@
 import { useParams } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
-import { StampPointData } from "../types/stampPoint";
+import { StampPointData } from "../Types/stampPoint";
 
-const fetchPoints = async (id: string) => {
+const fetchPoints = async (id: string): Promise<{ features: StampPointData[] }> => {
   const BASE_URL = `https://turistaterkepek.hu/server/rest/services/orszagos_kektura/kekturahu/MapServer/0/query?text=${id}&outFields=*&returnGeometry=false&f=pjson`;
   const response = await fetch(BASE_URL);
   const data = await response.json();
@@ -21,7 +21,7 @@ export default function StampPoint() {
     <div className="fixed inset-0 bg-green-100 h-screen overflow-auto">
       <div className="flex flex-col items-center">
         {query.data?.features.map(
-          (point: StampPointData) =>
+          (point) =>
             point.attributes.bh_id === id && (
               <div
                 key={point.attributes.objectid}

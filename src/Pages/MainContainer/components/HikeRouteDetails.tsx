@@ -60,9 +60,7 @@ export default function HikeRouteDetails({
               type="checkbox"
               className="checkbox"
               checked={dataOnFire.isChecked}
-              onChange={() => {
-                handleCheck();
-              }}
+              onChange={handleCheck}
             />
           ) : (
             <></>

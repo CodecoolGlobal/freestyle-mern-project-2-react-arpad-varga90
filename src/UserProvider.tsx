@@ -19,10 +19,12 @@ export function UserProvider({ children }: { children: React.ReactNode }) {
   )
 }
 
+// eslint-disable-next-line react-refresh/only-export-components
 export function useAuth() {
   return useContext(UserContext);
 }
 
+// eslint-disable-next-line react-refresh/only-export-components
 export function useAuthUnsafe() {
   return useAuth()!;
 }

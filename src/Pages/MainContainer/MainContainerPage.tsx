@@ -24,31 +24,24 @@ export default function MainContainerPage() {
   const [likesNum] = useLikeNum();
 
   const dataOnFire = data?.features.map((detail) => {
-    let isChecked = false;
-    let isLiked = false;
-    let likeNum = 0;
-    if (stamps) {
-      stamps.forEach((stamp) => {
-        if (stamp.bhszakasz_id === detail.attributes.bhszakasz_id) {
-          isChecked = true;
-        }
-      });
-    }
-    if (likes) {
-      likes.forEach((like) => {
-        if (like.bhszakasz_id === detail.attributes.bhszakasz_id) {
-          isLiked = true;
-        }
-      });
-    }
-    if (likesNum) {
-      likesNum.forEach((like) => {
-        if (like.bhszakasz_id === detail.attributes.bhszakasz_id) {
-          likeNum += 1;
-        }
-      });
-    }
-    return { isChecked: isChecked, isLiked: isLiked, likeNum: likeNum };
+    const bhId = detail.attributes.bhszakasz_id;
+
+    const isChecked =
+      stamps?.some((stamp) => stamp.bhszakasz_id === bhId) ?? false;
+
+    const isLiked = likes?.some((like) => like.bhszakasz_id === bhId) ?? false;
+
+    const likeNum =
+      likesNum?.reduce(
+        (acc, curr) => (curr.bhszakasz_id === bhId ? acc + 1 : acc),
+        0
+      ) ?? 0;
+
+    return {
+      isChecked,
+      isLiked,
+      likeNum,
+    };
   });
 
   return (

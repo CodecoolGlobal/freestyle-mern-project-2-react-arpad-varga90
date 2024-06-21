@@ -9,8 +9,7 @@ import {
   where,
 } from "firebase/firestore";
 import store from "../firebase/store";
-import { Likes } from "../types/Likes";
-
+import { Likes } from "../Types/Likes";
 
 const converter = {
   toFirestore(like: Likes) {
