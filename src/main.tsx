@@ -12,10 +12,12 @@ const router = createBrowserRouter([
   {
     path: "/",
     element: <HomePage />,
-  },
-  {
-    path: "pecset/:id",
-    element: <StampPoint />,
+    children: [
+      {
+        path: "/pecset/:id",
+        element: <StampPoint />,
+      },
+    ],
   },
 ]);
 
